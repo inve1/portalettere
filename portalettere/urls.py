@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 from .api import ThreadResource
 from .views import ThreadMsgsLW
+from .models import Thread
+from django.views.generic import ListView
 
 from django.contrib import admin
 admin.autodiscover()
@@ -8,14 +10,10 @@ admin.autodiscover()
 thread_resouce = ThreadResource()
 
 urlpatterns = patterns('',
-    url(r'^simplesend/$', 'portalettere.views.send_message', name='simplesend'),
-    # url(r'^portalettere/', include('portalettere.foo.urls')),
-
     url(r'^thread/', include(thread_resouce.urls)),
-    url(r'^th/(\d+)/$', ThreadMsgsLW.as_view()),
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
+    url(r'^th/$', ListView.as_view(model=Thread, template_name='threadlist.html')),
+    url(r'^th/send/(?P<threadpk>\d+)/$', 'portalettere.views.send_message', name='send_in_thread'),
+    url(r'^addthread/$', 'portalettere.views.add_thread', name='add_thread'),
+    url(r'^th/(\d+)/$', ThreadMsgsLW.as_view(), name='thread'),
     url(r'^admin/', include(admin.site.urls)),
 )

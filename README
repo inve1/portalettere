@@ -1,0 +1,5 @@
+This is a django application that lets you [or most likely, just me] send
+and receive text messages through some sort of device [I have a usb dongle
+hooked up to asterisk, but just extend the Sender class to do whatever you need]
+
+It's not working yet so you may not want to try it :)

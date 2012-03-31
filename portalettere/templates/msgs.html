@@ -1,16 +1,14 @@
-<html>
-<head>
-<title>
-Messages with {{ talkingto }}
-</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load url from future %}
+{% block title %} Messages with {{ talkingto }} {% endblock %}
 {% block content %}
 <ul>
 {% for msg in object_list %}
 <li>{%if msg.received %}{{ talkingto }}: {% else %}Me: {% endif %}{{ msg.content}}</li>
 {% endfor %}
 </ul>
+<form action="{% url "send_in_thread" threadpk=thread.pk  %}" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
 {% endblock %}
-</body>
-</html>
