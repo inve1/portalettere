@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>
+Messages with {{ talkingto }}
+</title>
+</head>
+<body>
+{% block content %}
+<ul>
+{% for msg in object_list %}
+<li>{%if msg.received %}{{ talkingto }}: {% else %}Me: {% endif %}{{ msg.content}}</li>
+{% endfor %}
+</ul>
+{% endblock %}
+</body>
+</html>

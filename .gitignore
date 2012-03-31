@@ -1,0 +1,13 @@
+# OS X
+.DS_Store
+
+# python
+*.py[co]
+
+# pycharm
+/.idea
+
+# virtualenv
+/.ve
+
+db.sqlite
